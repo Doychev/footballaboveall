@@ -396,7 +396,7 @@
                 </div>
               </div>
             </div>
-            <form action="#" class="contact-form" id="submissions" action="https://formspree.io/f/mknyybee" method="POST">
+            <form action="https://formspree.io/f/mknyybee" class="contact-form" method="POST">
               <div class="row">
                 <div class="col-md-6">
                   <input type="text" name="name" id="name" placeholder="Име и фамилия" required />
@@ -421,13 +421,12 @@
               <div class="row">
                 <div class="col-12">
                   <div class="button text-center rounded-buttons">
-                    <button type="submit" id="submissions-button" class="btn primary-btn rounded-full">
+                    <button type="submit" class="btn primary-btn rounded-full">
                       Изпрати
                     </button>
                   </div>
                 </div>
               </div>
-              <p id="submissions-status"></p>
             </form>
           </div>
         </div>
@@ -541,39 +540,6 @@
       'autoplayVideos': true,
     });
 
-  </script>
-
-  <script>
-    var form = document.getElementById("submissions");
-
-    async function handleSubmit(event) {
-      event.preventDefault();
-      var status = document.getElementById("submissions-status");
-      var data = new FormData(event.target);
-      fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          status.innerHTML = "Благодарим Ви! Очаквайте обратна връзка скоро!";
-          form.reset()
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-            } else {
-              status.innerHTML = "Възникна проблем! Моля, опитайте отново."
-            }
-          })
-        }
-      }).catch(error => {
-        status.innerHTML = "Възникна проблем! Моля, опитайте отново."
-      });
-    }
-    form.addEventListener("submit", handleSubmit)
   </script>
 </body>
 
